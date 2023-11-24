@@ -28,7 +28,7 @@ namespace LethalWidescreen.Patches
         private static void LateUpdate(PlayerControllerB __instance)
         {
             Camera camera = __instance.gameplayCamera;
-            camera.fieldOfView = __instance.targetFOV*1.33f;
+            camera.fieldOfView = __instance.targetFOV*1.25f;
         }
     }
 }
