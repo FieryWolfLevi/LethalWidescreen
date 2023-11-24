@@ -1,12 +1,7 @@
 ﻿using BepInEx;
-using System.Collections;
+using System;
 using UnityEngine;
 using HarmonyLib;
-using LethalWidescreen.Patches;
-using System.Collections.Generic;
-using System.Linq;
-using BepInEx.Logging;
-using GameNetcodeStuff;
 
 namespace LethalWidescreen
 {
