@@ -1,9 +1,6 @@
-﻿using BepInEx.Logging;
-using GameNetcodeStuff;
+﻿using BepInEx;
 using HarmonyLib;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
 
 namespace LethalWidescreen.Patches
