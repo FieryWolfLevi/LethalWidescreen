@@ -1,6 +1,6 @@
-﻿using BepInEx;
+using BepInEx.Logging;
+using GameNetcodeStuff;
 using HarmonyLib;
-using System;
 using UnityEngine;
 
 namespace LethalWidescreen.Patches
@@ -13,14 +13,26 @@ namespace LethalWidescreen.Patches
         private static void OnEnable()
         {
             GameObject ingamePlayerHud = GameObject.Find("Panel");
+
             RectTransform panelRectTransform = ingamePlayerHud.GetComponent<RectTransform>();
 
-            float screenWidth = Screen.width;
-            float screenHeight = Screen.height;
+            panelRectTransform.anchorMin = new Vector2(0, 0);
+            panelRectTransform.anchorMax = new Vector2(1, 1);
 
-            panelRectTransform.sizeDelta = new Vector2(screenWidth / 8, screenHeight / 8);
+            panelRectTransform.pivot = new Vector2(0, 1);
 
-            panelRectTransform.anchoredPosition = new Vector2(0, 0);
+            panelRectTransform.anchoredPosition = Vector2.zero;
+
+            panelRectTransform.sizeDelta = Vector2.zero;
+            
+            ManualLogSource mls = LethalWidescreen.mls;
+
+
+            float xScaleFactor = Screen.width / (Screen.height * (16f / 9f));
+            mls.LogInfo("!!! " + xScaleFactor + " set to xScaleFactor!");
+
+
+            panelRectTransform.localScale = new Vector3(xScaleFactor+0.1f, 1f, 1f);
         }
 
         [HarmonyPostfix]
@@ -28,7 +40,7 @@ namespace LethalWidescreen.Patches
         private static void LateUpdate(PlayerControllerB __instance)
         {
             Camera camera = __instance.gameplayCamera;
-            camera.fieldOfView = __instance.targetFOV*1.25f;
+            __instance.targetFOV = camera.fieldOfView * 1.25f;
         }
     }
 }
