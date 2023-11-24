@@ -1,7 +1,6 @@
-﻿using BepInEx;
-using System;
-using UnityEngine;
+using BepInEx;
 using HarmonyLib;
+using BepInEx.Logging;
 
 namespace LethalWidescreen
 {
